@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  deepseek-vllm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: deepseek-vllm
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+    environment:
+      - MODEL_NAME=deepseek-ai/DeepSeek-V3
+      - TENSOR_PARALLEL_SIZE=4
+      - MAX_MODEL_LEN=8192
+      - GPU_MEMORY_UTILIZATION=0.9
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      - ./model_cache:/root/.cache/huggingface
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  redis:
+    image: redis:7-alpine
+    container_name: deepseek-redis
+    ports:
+      - "6379: 6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ../../frontend
+      dockerfile: Dockerfile
+    container_name: deepseek-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      - deepseek-vllm
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+
+networks:
+  default:
+    name: deepseek-network
