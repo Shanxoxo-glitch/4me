@@ -1,0 +1,61 @@
+{
+  "name": "brian-vscode",
+  "displayName": "Brian AI Assistant",
+  "description": "Brian (Jarvis-like AI) directly integrated in VS Code — replaces Copilot.",
+  "version": "1.0.0",
+  "publisher": "shan",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "AI",
+    "Programming Languages",
+    "Keybindings"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "brian.ask",
+        "title": "Ask Brian..."
+      },
+      {
+        "command": "brian.refactor",
+        "title": "Brian: Refactor Code"
+      },
+      {
+        "command": "brian.explain",
+        "title": "Brian: Explain Code"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "brian.ask",
+        "key": "ctrl+alt+b",
+        "when": "editorTextFocus"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "brian-sidebar-container",
+          "title": "Brian Cognition",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "brian-sidebar-container": [
+        {
+          "type": "webview",
+          "id": "brian-sidebar-view",
+          "name": "Brian Chat"
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0"
+  }
+}

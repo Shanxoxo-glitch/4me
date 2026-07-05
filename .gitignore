@@ -1,7 +1,8 @@
 # Environment variables with API keys
-deployment.env
 .env
-*.env
+deployment.env
+
+!deployment.env.example
 
 # Python
 __pycache__/
@@ -56,6 +57,13 @@ yarn-error.log*
 # Logs
 logs/
 *.log
+
+# Brian Core specific
+brian-core/.env
+brian-core/browser_profile/
+brian-core/credentials.json
+brian-core/venv/
+brian-core/.venv/
 
 # Model cache
 model_cache/

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BRIAN — AI Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Drag handle for frameless window -->
+  <div id="drag-handle" class="drag-bar">
+    <div class="drag-dots">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="window-title">B·R·I·A·N</div>
+    <div class="window-controls">
+      <button id="btn-minimize" title="Minimize">─</button>
+    </div>
+  </div>
+
+  <main class="hud-container">
+
+    <!-- ── ORBS & STATUS ───────────────────── -->
+    <section class="orb-section">
+      <!-- Outer rings -->
+      <div class="ring ring-4"></div>
+      <div class="ring ring-3"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-1"></div>
+
+      <!-- Core orb -->
+      <div class="orb" id="orb">
+        <div class="orb-inner">
+          <div class="orb-core"></div>
+        </div>
+      </div>
+
+      <!-- State label -->
+      <div class="state-badge" id="state-badge">
+        <span class="state-dot" id="state-dot"></span>
+        <span id="state-text">STANDBY</span>
+      </div>
+    </section>
+
+    <!-- ── EMOTION INDICATOR ───────────────── -->
+    <section class="emotion-bar">
+      <div class="emotion-label">EMOTIONAL STATE</div>
+      <div class="emotion-chips" id="emotion-chips">
+        <div class="chip active" data-emotion="neutral">NEUTRAL</div>
+        <div class="chip" data-emotion="curious">CURIOUS</div>
+        <div class="chip" data-emotion="excited">EXCITED</div>
+        <div class="chip" data-emotion="focused">FOCUSED</div>
+        <div class="chip" data-emotion="cautious">CAUTIOUS</div>
+        <div class="chip" data-emotion="humorous">HUMOROUS</div>
+        <div class="chip" data-emotion="empathetic">EMPATHETIC</div>
+        <div class="chip" data-emotion="alert">ALERT</div>
+      </div>
+    </section>
+
+    <!-- ── TRANSCRIPT ──────────────────────── -->
+    <section class="transcript-section">
+      <div class="section-header">
+        <span class="section-icon">◈</span>
+        <span>TRANSCRIPT</span>
+        <div class="header-line"></div>
+      </div>
+      <div class="transcript-scroll" id="transcript">
+        <div class="transcript-item brian">
+          <span class="t-role">BRIAN</span>
+          <p>All systems online. Say <em>"Hey Brian"</em> to activate.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ACTION LOG ──────────────────────── -->
+    <section class="action-section">
+      <div class="section-header">
+        <span class="section-icon">◉</span>
+        <span>ACTION LOG</span>
+        <div class="header-line"></div>
+      </div>
+      <div class="action-scroll" id="action-log">
+        <div class="action-item">
+          <span class="action-icon">⚡</span>
+          <span class="action-text">BRIAN initialized — all modules loaded</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SYSTEM INFO BAR ─────────────────── -->
+    <footer class="info-bar">
+      <div class="info-item">
+        <span class="info-label">MODEL</span>
+        <span class="info-value" id="info-model">claude-3.5-sonnet</span>
+      </div>
+      <div class="info-sep">|</div>
+      <div class="info-item">
+        <span class="info-label">TIME</span>
+        <span class="info-value" id="info-time">--:--</span>
+      </div>
+      <div class="info-sep">|</div>
+      <div class="info-item">
+        <span class="info-label">STATUS</span>
+        <span class="info-value" id="info-status">ONLINE</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Sound wave visualizer (shows when speaking/listening) -->
+  <div class="wave-container" id="wave-container">
+    <div class="wave-bars">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <script src="brian.js"></script>
+</body>
+</html>
