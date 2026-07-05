@@ -1,0 +1,3 @@
+[submodule "openWakeWord"]
+	path = openWakeWord
+	url = https://github.com/dscrianka/openWakeWord

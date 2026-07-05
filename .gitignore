@@ -65,6 +65,9 @@ brian-core/credentials.json
 brian-core/venv/
 brian-core/.venv/
 
+# External repositories
+DeepSeek-V3/
+
 # Model cache
 model_cache/
 *.bin
